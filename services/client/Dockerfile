@@ -1,0 +1,18 @@
+# pull official base image
+FROM node:19
+
+# set working directory
+WORKDIR /usr/src/app
+
+# add `/usr/src/app/node_modules/.bin` to $PATH
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
+
+# install and cache app dependencies
+COPY package.json .
+COPY package-lock.json .
+RUN npm ci
+RUN npm install react-scripts@5.0.1 -g --silent
+RUN npm install react-scripts@5.0.1 prettier@2.8.4 eslint@8.35.0 -g --silent
+
+# start app
+CMD ["npm", "start"]
