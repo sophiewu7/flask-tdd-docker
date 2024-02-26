@@ -35,7 +35,7 @@ RUN isort src --check-only
 #########
 
 # pull official base image
-FROM python:3.10.0-slim-bookworm
+FROM python:3.10.12-slim-bookworm
 
 # set work directory
 WORKDIR /usr/src/app
