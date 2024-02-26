@@ -4,7 +4,9 @@ import os
 class BaseConfig:
     TESTING = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SECRET_KEY = "my_precious"
+    SECRET_KEY = (
+        "nvNiTHDWEDyt3ciEJOLauNhSC6szkvGgciTImPeW6F2ThUhtl6yrRmqq4t_co_lP5gQ_sophie"
+    )
 
 
 class DevelopmentConfig(BaseConfig):
@@ -23,3 +25,7 @@ class ProductionConfig(BaseConfig):
         url = url.replace("postgres://", "postgresql://", 1)
 
     SQLALCHEMY_DATABASE_URI = url
+    SECRET_KEY = os.getenv(
+        "SECRET_KEY",
+        "nvNiTHDWEDyt3ciEJOLauNhSC6szkvGgciTImPeW6F2ThUhtl6yrRmqq4t_co_lP5gQ_sophie",
+    )

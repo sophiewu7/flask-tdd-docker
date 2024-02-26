@@ -35,7 +35,7 @@ RUN isort src --check-only
 #########
 
 # pull official base image
-FROM python:3.12.0-slim-bookworm
+FROM python:3.10.0-slim-bookworm
 
 # set work directory
 WORKDIR /usr/src/app
@@ -46,6 +46,9 @@ ENV PYTHONUNBUFFERED 1
 ENV FLASK_DEBUG 0
 ENV FLASK_ENV production
 ENV APP_SETTINGS src.config.ProductionConfig
+# new
+ARG SECRET_KEY
+ENV SECRET_KEY $SECRET_KEY
 
 # install system dependencies
 RUN apt-get update \
